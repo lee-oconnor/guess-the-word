@@ -24,22 +24,22 @@ const playAgainButton = document.querySelector(".play-again hide");
 
 const word = "magnolia";
 
-
+/*Display our symbols as placeholders for the chosen word's letters*/
 const placeHolder = function (word) {
     const placeHolderLetters = [];
     for (const letter of word) {
         console.log(letter);
-        placeHolderLetters.push("●"); 
+        placeHolderLetters.push("●");
+    
     }
     wordInProg.innerText = placeHolderLetters.join("");
-};
+}
 
 placeHolder(word);
 
 guessButton.addEventListener("click", function (e) {
     e.preventDefault();
-    const valueInput = letterInput.value;
-    console.log(valueInput);
+    const userInput = letterInput.value;
+    console.log(userInput);
     letterInput.value = "";
-
 });
