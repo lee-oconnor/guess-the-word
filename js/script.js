@@ -1,4 +1,4 @@
-const guessedLetters = document.querySelector(".guessed-letters");
+const guessedLettersElement = document.querySelector(".guessed-letters");
 /*Unordered list where player's guessed letters appear */
 
 const guessButton = document.querySelector(".guess");
@@ -16,13 +16,14 @@ const remainingGuesses = document.querySelector(".remaining");
 const guessesSpan = document.querySelector(".remaining span");
 /*The span inside the paragraph where the remaining guesses will display*/
 
-const messages = document.querySelector(".messages");
+const message = document.querySelector(".message");
 /*The empty paragraph where messages will appear when the player guesses a letter */
 
 const playAgainButton = document.querySelector(".play-again hide");
 /*The hidden button that will appear prompting the player to play again */
 
 const word = "magnolia";
+const guessedLetters = [];
 
 /*Display our symbols as placeholders for the chosen word's letters*/
 const placeHolder = function (word) {
@@ -39,7 +40,37 @@ placeHolder(word);
 
 guessButton.addEventListener("click", function (e) {
     e.preventDefault();
-    const userInput = letterInput.value;
-    console.log(userInput);
+    message.innerText = "";
+    const guess = letterInput.value;
+    console.log(guess);
     letterInput.value = "";
+    const goodGuess = validateInput(guess);
+    if (goodGuess) {
+        makeGuess(guess);
+    };
 });
+
+
+
+validateInput = function (input) {
+    const acceptedLetter = /[a-zA-Z]/;
+    if (input.length === 0) {
+        message.innerText = "Please enter a letter.";
+    } else if (input.length > 1) {
+        message.innerText = "Please only choose one letter.";
+    } else if (!input.match(acceptedLetter)) {
+        message.innerText = "Please pick a letter A - Z.";
+    } else {
+        return input;
+    }
+};
+
+const makeGuess = function (guess) {
+    guess = guess.toUpperCase();
+    if (guessedLetters.includes(guess)) {
+    message.innerText = "You already guessed that letter.";
+    } else {
+        guessedLetters.push(guess);
+        console.log(guessedLetters);
+    };
+};
