@@ -23,6 +23,7 @@ const playAgainButton = document.querySelector(".play-again hide");
 /*The hidden button that will appear prompting the player to play again */
 
 const word = "magnolia";
+
 const guessedLetters = [];
 
 /*Display our symbols as placeholders for the chosen word's letters*/
@@ -72,5 +73,40 @@ const makeGuess = function (guess) {
     } else {
         guessedLetters.push(guess);
         console.log(guessedLetters);
+        showPlayerGuesses();
+        updateWordInProg(guessedLetters);
     };
 };
+
+const showPlayerGuesses = function () {
+    guessedLettersElement.innerHTML = "";
+    
+    for (const letter of guessedLetters) {
+        const li = document.createElement("li");
+        li.innerText = letter;
+        guessedLettersElement.append(li);
+    } 
+};
+
+  const updateWordInProg = function (guessedLetters) {
+      const wordUpper = word.toUpperCase();
+      const wordArray = wordUpper.split("");
+      const correctWord = [];
+    
+      for (const letter of wordArray) {
+        if (guessedLetters.includes (letter)) {
+            correctWord.push(letter.toUpperCase());
+          } else {
+              correctWord.push("●");
+          } 
+      }
+      wordInProg.innerText = correctWord.join("");
+      checkWinner();
+  };
+
+  const checkWinner = function () {
+        if (word.toUpperCase() === wordInProg.innerText) {
+        message.classList.add("win");
+        message.innerHTML = `<p class="highlight">You correctly guessed the word! Congrats!</p>`; 
+    }
+  };
