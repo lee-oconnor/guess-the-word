@@ -163,10 +163,11 @@ const startOver = function () {
 
 playAgainButton.addEventListener("click", function () {
     message.classList.remove("win");
-    message.innerHTML = "";
+    guessedLetters = [];
+    message.innerText = "";
     guessedLettersElement.innerHTML = "";
     remainingGuesses = 8;
-    guessesSpan.innerText = "8 guesses";
+    guessesSpan.innerText = `${remainingGuessesParagraph} guesses`;
     guessButton.classList.remove("hide");
     remainingGuessesParagraph.classList.remove("hide");
     guessedLettersElement.classList.remove("hide");
