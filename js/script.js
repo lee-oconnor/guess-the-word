@@ -23,7 +23,7 @@ const playAgainButton = document.querySelector(".play-again");
 /*The hidden button that will appear prompting the player to play again */
 
 let word = "magnolia";
-const guessedLetters = [];
+let guessedLetters = [];
 let remainingGuesses = 8;
 
 const getWord = async function () {
@@ -152,7 +152,7 @@ const startOver = function () {
 
 playAgainButton.addEventListener("click", function () {
   message.classList.remove("win");
-  guessedLetters;
+  guessedLetters = [];
   message.innerText = "";
   guessedLettersElement.innerHTML = "";
   remainingGuesses = 8;
