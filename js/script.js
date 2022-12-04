@@ -30,15 +30,15 @@ const getWord = async function () {
   const res = await fetch(
     "https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt"
   );
-  const data = await res.text();
+  const data = await res.text(); //use text.() because will give you the result in string format, and ".json()" will parse it from JSON and convert it into an object.
   const wordArray = data.split("\n");
   const randomIndex = Math.floor(Math.random() * wordArray.length);
   word = wordArray[randomIndex].trim();
   placeHolder(word);
 };
-getWord();
+// getWord();
 
-/*Display our symbols as placeholders for the chosen word's letters*/
+/*Display symbols as placeholders for the chosen word's letters*/
 const placeHolder = function (word) {
   const placeHolderLetters = [];
   for (const letter of word) {
@@ -48,7 +48,7 @@ const placeHolder = function (word) {
   wordInProg.innerText = placeHolderLetters.join("");
 };
 
-/*fire off the game! */
+/*start the game! */
 getWord();
 
 guessButton.addEventListener("click", function (e) {
